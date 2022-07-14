@@ -17,8 +17,11 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @Configuration
 public class SecurityConfig
 {
-    @Autowired
     private TokenFilter tokenFilter;
+    public SecurityConfig(TokenFilter tokenFilter)
+    {
+        this.tokenFilter=tokenFilter;
+    }
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests(auth ->
