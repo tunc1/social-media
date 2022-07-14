@@ -12,3 +12,5 @@ spring:
 jwt:
   key: key
   day: 30
+server:
+  port: ${PORT:8080}
