@@ -13,7 +13,7 @@ jobs:
         uses: actions/checkout@v2
       - name: Download JDK
         run: |
-          wget -O $RUNNER_TEMP/jdk.tar.gz https://download.oracle.com/java/17/archive/jdk-17.0.3.1_linux-aarch64_bin.tar.gz
+          wget -O $RUNNER_TEMP/jdk.tar.gz https://download.oracle.com/java/17/archive/jdk-17.0.3.1_linux-x64_bin.tar.gz
       - name: Setup Java
         uses: actions/setup-java@v2
         with:
