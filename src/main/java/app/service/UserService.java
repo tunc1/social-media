@@ -23,6 +23,10 @@ public class UserService
 			throw new UsernameAlreadyInUseException();
 		if(userRepository.existsByEmail(user.getEmail()))
 			throw new EmailAlreadyInUseException();
+		user.setCredentialsNonExpired(true);
+		user.setEnabled(true);
+		user.setAccountNonLocked(true);
+		user.setAccountNonExpired(true);
 		user.setPassword(passwordEncoder.encode(user.getPassword()));
 		userRepository.save(user);
 	}
