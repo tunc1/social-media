@@ -35,7 +35,6 @@ jobs:
           HEROKU_EMAIL: ${{secrets.HEROKU_EMAIL}}
           HEROKU_API_KEY: ${{secrets.HEROKU_API_KEY}}
         run: |
-          cd ${DOCKERFILE_DIRECTORY}
           echo ${HEROKU_API_KEY} | docker login --username=${HEROKU_EMAIL} registry.heroku.com --password-stdin
           docker build --tag registry.heroku.com/${HEROKU_APP_NAME}/web .
           heroku container:push web --app ${HEROKU_APP_NAME}
