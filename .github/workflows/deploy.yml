@@ -19,7 +19,7 @@ jobs:
         with:
           distribution: 'jdkfile'
           jdkFile: ${{ runner.temp }}/jdk.tar.gz
-          java-version: '16'
+          java-version: '17'
           architecture: x64
       - name: Cache Maven packages
         uses: actions/cache@v2
