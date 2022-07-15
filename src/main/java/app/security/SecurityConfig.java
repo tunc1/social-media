@@ -1,6 +1,5 @@
 package app.security;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -28,7 +27,8 @@ public class SecurityConfig
         this.tokenFilter=tokenFilter;
     }
     @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception
+    {
         http.authorizeHttpRequests(auth ->
                     auth.antMatchers(HttpMethod.POST,"/authenticate","/register").permitAll()
                     .anyRequest().authenticated()
@@ -36,10 +36,12 @@ public class SecurityConfig
             .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
             .csrf(AbstractHttpConfigurer::disable)
             .addFilterBefore(tokenFilter,UsernamePasswordAuthenticationFilter.class)
-                .cors().configurationSource(corsConfigurationSource());
+			.cors().configurationSource(corsConfigurationSource());
         return http.build();
     }
-    private CorsConfigurationSource corsConfigurationSource() {
+	@Bean
+    public CorsConfigurationSource corsConfigurationSource()
+    {
         CorsConfiguration configuration = new CorsConfiguration();
         configuration.setAllowedOrigins(Arrays.asList("*"));
         configuration.setAllowedMethods(Arrays.asList("GET","POST","PUT","DELETE"));
